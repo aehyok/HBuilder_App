@@ -6,7 +6,6 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../css/app.css" />
 		<link href="css/mui.imageviewer.css" rel="stylesheet" />
 		<style>
 			html,
@@ -325,5 +324,126 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/mui.imageViewer.js"></script>
 		<script src="js/arttmpl.js"></script>
+		<script>
+			(function($, doc) {
+				$.init({
+					gestureConfig: {
+						tap: true, //默认为true
+						doubletap: true, //默认为false
+						longtap: true, //默认为false
+						swipe: true, //默认为true
+						drag: true, //默认为true
+						hold: true, //默认为false，不监听
+						release: true //默认为false，不监听
+					}
+				});
+				
+				$.plusReady(function() {
+					plus.webview.currentWebview().setStyle({
+						softinputMode: "adjustResize"
+					});
+					
+					var ui = {
+						body: doc.querySelector('body'),
+						footer: doc.querySelector('footer'),
+						footerRight: doc.querySelector('.footer-right'),
+						footerLeft: doc.querySelector('.footer-left'),
+						btnMsgType: doc.querySelector('#msg-type'),
+						boxMsgText: doc.querySelector('#msg-text'),
+						boxMsgSound: doc.querySelector('#msg-sound'),
+						btnMsgImage: doc.querySelector('#msg-image'),
+						areaMsgList: doc.querySelector('#msg-list'),
+						boxSoundAlert: doc.querySelector('#sound-alert'),
+						h: doc.querySelector('#h'),
+						content: doc.querySelector('.mui-content')
+					};
+					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
+					//alert(ui.boxMsgText.offsetWidth );
+					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+					
+//					window.addEventListener('resize', function() {
+//						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+//					}, false);
+					
+//					function msgTextFocus() {
+//							ui.boxMsgText.focus();
+//							setTimeout(function() {
+//								ui.boxMsgText.focus();
+//							}, 150);
+//						}
+//						//解决长按“发送”按钮，导致键盘关闭的问题；
+//					ui.footerRight.addEventListener('touchstart', function(event) {
+//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+//							msgTextFocus();
+//							event.preventDefault();
+//						}
+//					});
+//					//解决长按“发送”按钮，导致键盘关闭的问题；
+//					ui.footerRight.addEventListener('touchmove', function(event) {
+//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+//							msgTextFocus();
+//							event.preventDefault();
+//						}
+//					});
+					
+					ui.footerRight.addEventListener('release', function(event) {
+						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+							//showKeyboard();
+							ui.boxMsgText.focus();
+							setTimeout(function() {
+								ui.boxMsgText.focus();
+							}, 150);
+							//							event.detail.gesture.preventDefault();
+//							send({
+//								sender: 'self',
+//								type: 'text',
+//								content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
+//							});
+							alert('Send Message');
+							ui.boxMsgText.value = '';
+							$.trigger(ui.boxMsgText, 'input', null);
+						} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {
+							ui.btnMsgType.classList.add('mui-icon-compose');
+							ui.btnMsgType.classList.remove('mui-icon-mic');
+							ui.boxMsgText.style.display = 'none';
+							ui.boxMsgSound.style.display = 'block';
+							ui.boxMsgText.blur();
+							document.body.focus();
+						} else if (ui.btnMsgType.classList.contains('mui-icon-compose')) {
+							ui.btnMsgType.classList.add('mui-icon-mic');
+							ui.btnMsgType.classList.remove('mui-icon-compose');
+							ui.boxMsgSound.style.display = 'none';
+							ui.boxMsgText.style.display = 'block';
+							//--
+							//showKeyboard();
+							ui.boxMsgText.focus();
+							setTimeout(function() {
+								ui.boxMsgText.focus();
+							}, 150);
+						}
+					}, false);
+					
+					ui.boxMsgText.addEventListener('input', function(event) {
+						ui.btnMsgType.classList[ui.boxMsgText.value == '' ? 'remove' : 'add']('mui-icon-paperplane');
+						ui.btnMsgType.setAttribute("for", ui.boxMsgText.value == '' ? '' : 'msg-text');
+						ui.h.innerText = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '\n-') || '-';
+						ui.footer.style.height = (ui.h.offsetHeight + footerPadding) + 'px';
+						ui.content.style.paddingBottom = ui.footer.style.height;
+					});
+					var focus = false;
+					ui.boxMsgText.addEventListener('tap', function(event) {
+						ui.boxMsgText.focus();
+						setTimeout(function() {
+							ui.boxMsgText.focus();
+						}, 0);
+						focus = true;
+						setTimeout(function () {
+							focus = false;
+						},1000);
+						event.detail.gesture.preventDefault();
+					}, false);
+				});
+			}(mui, document));
+		</script>
 	</body>
 </html>

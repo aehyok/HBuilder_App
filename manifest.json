@@ -231,7 +231,10 @@
 			"ChatNewPage.html": {
 				"resources": [
 					"css/mui.min.css",
-					"css/mui.imageviewer.css"
+					"css/mui.imageviewer.css",
+					"js/mui.imageViewer.js",
+					"css/app.css",
+					"js/arttmpl.js"
 				],
 				"refer": [],
 				"priority": 0
