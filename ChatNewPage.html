@@ -412,13 +412,11 @@
 								ui.boxMsgText.focus();
 							}, 150);
 
-							alert(ui.boxMsgText.value);
 							var content=ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
 							var connectionId =ChatConnectionId;
 					        var parameter = new Object();
 					        parameter.ReceiveConnectionId = connectionId;
 					        parameter.Content = content;
-					        alert(parameter.Content);
 					        hubConnection.invoke('SendMessage', parameter);
 							
 							ui.boxMsgText.value = '';
@@ -496,11 +494,9 @@
 			        
 					//接收并显示消息
 			        hubConnection.on('ReceiveMessage', data => {
-			        	alert(data);
 			            var userName = data.UserName;
 			            var content = data.Content;
 			            var time = data.SendTime;
-			            alert(time);
 			            var html='<div>'+content+'</div></br>';
 			            
 			            
