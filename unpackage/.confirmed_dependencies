@@ -1,20 +1,40 @@
 {
-  "index.html": {
-    "resources": [
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "Chat.html",
-      "fonts/mui.ttf"
-    ],
-    "refer": [
-      "Chat.html"
-    ]
-  },
-  "Chat.html": {
-    "resources": [
-      "css/mui.min.css",
-      "js/signalr-client.min.js",
-      "js/jquery-1.10.2.min.js"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"Chat.html",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"Chat.html",
+			"ChatPage.html",
+			"ChatNewPage.html"
+		]
+	},
+	"Chat.html": {
+		"resources": [
+			"css/mui.min.css",
+			"js/signalr-client.min.js",
+			"js/jquery-1.10.2.min.js"
+		]
+	},
+	"ChatPage.html": {
+		"resources": [
+			"css/mui.imageviewer.css",
+			"/js/mui.imageViewer.js",
+			"/js/mui.min.js",
+			"css/mui.min.css",
+			"/js/arttmpl.js",
+			"js/mui.imageViewer.js",
+			"js/arttmpl.js",
+			"js/mui.min.js"
+		]
+	},
+	"ChatNewPage.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/mui.imageviewer.css"
+		]
+	}
 }

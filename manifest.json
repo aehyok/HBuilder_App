@@ -199,7 +199,10 @@
 					"Chat.html",
 					"fonts/mui.ttf"
 				],
-				"refer": [],
+				"refer": [
+					"ChatPage.html",
+					"ChatNewPage.html"
+				],
 				"priority": 0
 			},
 			"Chat.html": {
@@ -207,6 +210,28 @@
 					"css/mui.min.css",
 					"js/signalr-client.min.js",
 					"js/jquery-1.10.2.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"ChatPage.html": {
+				"resources": [
+					"css/mui.imageviewer.css",
+					"/js/mui.imageViewer.js",
+					"/js/mui.min.js",
+					"css/mui.min.css",
+					"/js/arttmpl.js",
+					"js/mui.imageViewer.js",
+					"js/arttmpl.js",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"ChatNewPage.html": {
+				"resources": [
+					"css/mui.min.css",
+					"css/mui.imageviewer.css"
 				],
 				"refer": [],
 				"priority": 0

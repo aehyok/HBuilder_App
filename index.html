@@ -22,15 +22,24 @@
       	function openNewChatView()
       	{
       		  mui.openWindow({
-			    url: 'Chat.html', 
+			    url: 'ChatPage.html', 
 			    id:'chat'
 		  });
+      	}
+      	
+      	function openNewChatPageView()
+      	{
+      		mui.openWindow({
+      			url:'ChatNewPage.html',
+      			id:'ChatNewPage'
+      		});
       	}
     </script>
 </head>
 <body>
 	<button onclick="openNewWebView()">Open New Web View</button>
 	<button onclick="openNewChatView()">Open New Chat View</button>
+	<button onclick="openNewChatPageView()">Open New ChatPage View</button>
 	<a class="mui-navigate-right" href="Chat.html">
 		Open New Chat View
 	</a>
