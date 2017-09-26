@@ -324,7 +324,20 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/mui.imageViewer.js"></script>
 		<script src="js/arttmpl.js"></script>
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/signalr-client.min.js"></script>
 		<script>
+			
+			var ChatConnectionId=null;
+			var ChatUserName=null;
+			window.addEventListener('show', function(event) {
+                //获得事件参数
+                ChatConnectionId = event.detail.connectionId;
+                ChatUserName = event.detail.userName;
+                alert(ChatUserName);
+                document.querySelector('.mui-title').innerHTML=ChatUserName;
+        	});
+			
 			(function($, doc) {
 				$.init({
 					gestureConfig: {
@@ -344,6 +357,8 @@
 					});
 					
 					var ui = {
+						chatPerson: doc.querySelector('.mui-title'),
+						
 						body: doc.querySelector('body'),
 						footer: doc.querySelector('footer'),
 						footerRight: doc.querySelector('.footer-right'),
@@ -360,31 +375,31 @@
 					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
 					//alert(ui.boxMsgText.offsetWidth );
 					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+								
+					window.addEventListener('resize', function() {
+						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+					}, false);
 					
-//					window.addEventListener('resize', function() {
-//						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
-//					}, false);
-					
-//					function msgTextFocus() {
-//							ui.boxMsgText.focus();
-//							setTimeout(function() {
-//								ui.boxMsgText.focus();
-//							}, 150);
-//						}
-//						//解决长按“发送”按钮，导致键盘关闭的问题；
-//					ui.footerRight.addEventListener('touchstart', function(event) {
-//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-//							msgTextFocus();
-//							event.preventDefault();
-//						}
-//					});
-//					//解决长按“发送”按钮，导致键盘关闭的问题；
-//					ui.footerRight.addEventListener('touchmove', function(event) {
-//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-//							msgTextFocus();
-//							event.preventDefault();
-//						}
-//					});
+					function msgTextFocus() {
+							ui.boxMsgText.focus();
+							setTimeout(function() {
+								ui.boxMsgText.focus();
+							}, 150);
+						}
+						//解决长按“发送”按钮，导致键盘关闭的问题；
+					ui.footerRight.addEventListener('touchstart', function(event) {
+						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+							msgTextFocus();
+							event.preventDefault();
+						}
+					});
+					//解决长按“发送”按钮，导致键盘关闭的问题；
+					ui.footerRight.addEventListener('touchmove', function(event) {
+						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+							msgTextFocus();
+							event.preventDefault();
+						}
+					});
 					
 					ui.footerRight.addEventListener('release', function(event) {
 						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
@@ -442,6 +457,62 @@
 						},1000);
 						event.detail.gesture.preventDefault();
 					}, false);
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					let hubConnection;
+			      	//建立链接
+			        let hubUrl = 'http://aehyok.com:5004/chat';
+			        let httpConnection = new signalR.HttpConnection(hubUrl);
+			        hubConnection = new signalR.HubConnection(httpConnection);
+			
+			        //1、进行握手
+			        hubConnection.start();
+        
+                //3、握手后的服务端回调Me
+			        hubConnection.on('OnConnectionedMe', data => {
+			            var parameter = new Object();
+			            var userName = "Test";
+			            parameter.ConnectionId = data;
+			            parameter.UserName = userName;
+			            //4、链接建立后处理信息
+			            hubConnection.invoke('OnConnectionedAfter', parameter);
+			        });
+        
+			        hubConnection.on('OnConnectionedExcept', data => {
+			            jQuery("#roomlist li").remove();
+			            for (var i = 0; i < data.length; i++) {
+			                AddChatUser(data[i].ConnectionId, data[i].UserName,i);
+			            }
+			        });
+        
+			        function AddChatUser(connectionId,userName,count)
+				    {
+				    	var html='<li class=\"mui-table-view-cell\" id=\"li"+"' + connectionId + '\"  onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'>'+
+				    	'<a href=\"javascript:void(0);\" >' + userName + ''+
+				    	'</a><span class="mui-badge">'+count+'</span></li>';
+			//	        var html = '<li id=\"li"+"' + connectionId + '\"><a href=\"javascript:void(0);\" onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'><img class=\"contact-pic\" src=\"../theme/assets/pages/media/users/avatar7.jpg\">' +
+			//	            '<span class=\"contact-name\">' + userName + '</span>' +
+			//	            '<span class=\"contact-status bg-green\"></span></a></li>';
+				        jQuery("#roomlist").append(html);
+				    }
+	    
+	        		//与指定联系人建立显示聊天窗口
+				    function AddRoom(connectionId, userName) {
+				        $("#ChatRoomName").html(userName);
+				        $("#BtnSubmitMessage").attr("data-id", connectionId);
+				        var cont = $('#chats');
+				        var list = $('.chats', cont);
+				        list.find("li").remove();
+				    }
 				});
 			}(mui, document));
 		</script>

@@ -10,7 +10,12 @@
 	<script src="js/signalr-client.min.js"></script>
 	<script>
 		//初始化
-		mui.init();
+	    mui.init({
+            preloadPages: [{//预加载目标页面
+                'url': 'ChatNewPage.html',
+                'id': 'ChatNewPage'
+            }]
+        });
 		
 		
       	let hubConnection;
@@ -22,7 +27,7 @@
         //1、进行握手
         hubConnection.start();
         
-                //3、握手后的服务端回调Me
+        //3、握手后的服务端回调Me
         hubConnection.on('OnConnectionedMe', data => {
             var parameter = new Object();
             var userName = "Test";
@@ -39,42 +44,39 @@
             }
         });
         
+        hubConnection.on('OnDisconneted', data => {
+            
+        });
+        
         function AddChatUser(connectionId,userName,count)
 	    {
 	    	var html='<li class=\"mui-table-view-cell\" id=\"li"+"' + connectionId + '\"  onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'>'+
 	    	'<a href=\"javascript:void(0);\" >' + userName + ''+
 	    	'</a><span class="mui-badge">'+count+'</span></li>';
-//	        var html = '<li id=\"li"+"' + connectionId + '\"><a href=\"javascript:void(0);\" onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'><img class=\"contact-pic\" src=\"../theme/assets/pages/media/users/avatar7.jpg\">' +
-//	            '<span class=\"contact-name\">' + userName + '</span>' +
-//	            '<span class=\"contact-status bg-green\"></span></a></li>';
 	        $("#roomlist").append(html);
 	    }
 	    
 	        //与指定联系人建立显示聊天窗口
 	    function AddRoom(connectionId, userName) {
-	        $("#ChatRoomName").html(userName);
-	        $("#BtnSubmitMessage").attr("data-id", connectionId);
-	        var cont = $('#chats');
-	        var list = $('.chats', cont);
-	        list.find("li").remove();
+	    	alert(userName);
+	    	//选择聊天人，开始进入聊天页面
+	    	var Page = plus.webview.getWebviewById('ChatNewPage');
+	    	mui.fire(Page, 'show', {
+                connectionId: connectionId,     
+                userName: userName  
+          	});
+	    	mui.openWindow({
+	  			url:'ChatNewPage.html',
+	  			id:'ChatNewPage'
+	  		});
 	    }
 		</script>
 	</head>
 	<body>
+		<div style="padding-top: 100px;"></div>
 		<div class="mui-content">
 			<ul class="mui-table-view" id="roomlist">
 			</ul>
-		</div>
-
-		<div class="mui-bar-footer">
-		    <div class="mui-row">
-		        <div class="mui-col-sm-10 mui-col-xs-10">
-					<input type="text" class="mui-input-clear" placeholder="请输入聊天内容">
-		        </div>
-		        <div class="mui-col-sm-2 mui-col-xs-2">
-		        	<button type="button" class="mui-btn mui-btn-primary mui-pull-right" id="BtnSubmitMessage">发送</button>
-		        </div>
-		    </div>
 		</div>
 	</body>
 </html>

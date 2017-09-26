@@ -16,7 +16,12 @@
 		"resources": [
 			"css/mui.min.css",
 			"js/signalr-client.min.js",
-			"js/jquery-1.10.2.min.js"
+			"js/jquery-1.10.2.min.js",
+			"index.html"
+		],
+		"refer": [
+			"index.html",
+			"ChatNewPage.html"
 		]
 	},
 	"ChatPage.html": {
@@ -37,7 +42,9 @@
 			"css/mui.imageviewer.css",
 			"js/mui.imageViewer.js",
 			"css/app.css",
-			"js/arttmpl.js"
+			"js/arttmpl.js",
+			"js/signalr-client.min.js",
+			"js/jquery-1.10.2.min.js"
 		]
 	}
 }
