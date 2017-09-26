@@ -197,7 +197,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"Chat.html",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"images/01.png"
 				],
 				"refer": [
 					"ChatPage.html",

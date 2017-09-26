@@ -6,12 +6,19 @@
     <title></title>
     <script src="js/mui.min.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+    	.mui-col-sm-4{
+    		border: #2187E7 solid 0px;
+    	}
+    </style>
     <script type="text/javascript" charset="utf-8">
       	mui.plusReady(function(){
 		     console.log("当前页面URL："+plus.webview.currentWebview().getURL());
 		});
 		      	
-      	mui.init();
+      	mui.init({
+				statusBarBackground: '#f7f7f7'
+			});
       	
       	function openNewWebView()
       	{
@@ -34,14 +41,66 @@
       			id:'ChatNewPage'
       		});
       	}
+      	
+      	function openChatView()
+      	{
+      		mui.openWindow({
+      			url:'Chat.html',
+      			id:'Chat'
+      		});
+      	}
     </script>
 </head>
 <body>
 	<button onclick="openNewWebView()">Open New Web View</button>
 	<button onclick="openNewChatView()">Open New Chat View</button>
 	<button onclick="openNewChatPageView()">Open New ChatPage View</button>
-	<a class="mui-navigate-right" href="Chat.html">
-		Open New Chat View
-	</a>
+	<button onclick="openChatView()">Open New ChatPage View</button>
+	<div class="mui-content">
+		<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/01.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/02.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/03.png" />
+			</div>
+		</div>
+		<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/04.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/05.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/06.png" />
+			</div>
+		</div>
+		<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/07.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/08.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/09.png" />
+			</div>
+		</div>
+				<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/10.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/11.png" />
+			</div>
+			<div class="mui-col-sm-4">
+				<img style="width:100px;height:100px;" src="images/12.png" />
+			</div>
+		</div>
+	</div>
 </body>
 </html>
