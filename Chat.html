@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/signalr-client.min.js"></script>
+	<script>
+		//初始化
+		mui.init();
+		
+		
+      	let hubConnection;
+      	//建立链接
+        let hubUrl = 'http://aehyok.com:5004/chat';
+        let httpConnection = new signalR.HttpConnection(hubUrl);
+        hubConnection = new signalR.HubConnection(httpConnection);
+
+        //1、进行握手
+        hubConnection.start();
+        
+                //3、握手后的服务端回调Me
+        hubConnection.on('OnConnectionedMe', data => {
+            var parameter = new Object();
+            var userName = "Test";
+            parameter.ConnectionId = data;
+            parameter.UserName = userName;
+            //4、链接建立后处理信息
+            hubConnection.invoke('OnConnectionedAfter', parameter);
+        });
+        
+        hubConnection.on('OnConnectionedExcept', data => {
+            jQuery("#roomlist li").remove();
+            for (var i = 0; i < data.length; i++) {
+                AddChatUser(data[i].ConnectionId, data[i].UserName,i);
+            }
+        });
+        
+        function AddChatUser(connectionId,userName,count)
+	    {
+	    	var html='<li class=\"mui-table-view-cell\" id=\"li"+"' + connectionId + '\"  onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'>'+
+	    	'<a href=\"javascript:void(0);\" >' + userName + ''+
+	    	'</a><span class="mui-badge">'+count+'</span></li>';
+//	        var html = '<li id=\"li"+"' + connectionId + '\"><a href=\"javascript:void(0);\" onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'><img class=\"contact-pic\" src=\"../theme/assets/pages/media/users/avatar7.jpg\">' +
+//	            '<span class=\"contact-name\">' + userName + '</span>' +
+//	            '<span class=\"contact-status bg-green\"></span></a></li>';
+	        $("#roomlist").append(html);
+	    }
+	    
+	        //与指定联系人建立显示聊天窗口
+	    function AddRoom(connectionId, userName) {
+	        $("#ChatRoomName").html(userName);
+	        $("#BtnSubmitMessage").attr("data-id", connectionId);
+	        var cont = $('#chats');
+	        var list = $('.chats', cont);
+	        list.find("li").remove();
+	    }
+		</script>
+	</head>
+	<body>
+		<div class="mui-content">
+			<ul class="mui-table-view" id="roomlist">
+			</ul>
+		</div>
+
+		<div class="mui-bar-footer">
+		    <div class="mui-row">
+		        <div class="mui-col-sm-10 mui-col-xs-10">
+					<input type="text" class="mui-input-clear" placeholder="请输入聊天内容">
+		        </div>
+		        <div class="mui-col-sm-2 mui-col-xs-2">
+		        	<button type="button" class="mui-btn mui-btn-primary mui-pull-right" id="BtnSubmitMessage">发送</button>
+		        </div>
+		    </div>
+		</div>
+	</body>
+</html>
