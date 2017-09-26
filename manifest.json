@@ -198,7 +198,18 @@
 					"css/mui.min.css",
 					"Chat.html",
 					"fonts/mui.ttf",
-					"images/01.png"
+					"images/01.png",
+					"images/05.png",
+					"images/08.png",
+					"images/04.png",
+					"images/09.png",
+					"images/10.png",
+					"images/03.png",
+					"images/07.png",
+					"images/12.png",
+					"images/06.png",
+					"images/02.png",
+					"images/11.png"
 				],
 				"refer": [
 					"ChatPage.html",
@@ -240,7 +251,8 @@
 					"css/app.css",
 					"js/arttmpl.js",
 					"js/signalr-client.min.js",
-					"js/jquery-1.10.2.min.js"
+					"js/jquery-1.10.2.min.js",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
