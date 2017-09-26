@@ -330,16 +330,17 @@
 			
 			var ChatConnectionId=null;
 			var ChatUserName=null;
+			let hubConnection;
+			
 			window.addEventListener('show', function(event) {
                 //获得事件参数
                 ChatConnectionId = event.detail.connectionId;
                 ChatUserName = event.detail.userName;
-                alert(ChatUserName);
                 document.querySelector('.mui-title').innerHTML=ChatUserName;
         	});
 			
-			(function($, doc) {
-				$.init({
+			(function(mui, doc) {
+				mui.init({
 					gestureConfig: {
 						tap: true, //默认为true
 						doubletap: true, //默认为false
@@ -351,10 +352,12 @@
 					}
 				});
 				
-				$.plusReady(function() {
+				mui.plusReady(function() {
 					plus.webview.currentWebview().setStyle({
 						softinputMode: "adjustResize"
 					});
+					
+			      				
 					
 					var ui = {
 						chatPerson: doc.querySelector('.mui-title'),
@@ -408,15 +411,18 @@
 							setTimeout(function() {
 								ui.boxMsgText.focus();
 							}, 150);
-							//							event.detail.gesture.preventDefault();
-//							send({
-//								sender: 'self',
-//								type: 'text',
-//								content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
-//							});
-							alert('Send Message');
+
+							alert(ui.boxMsgText.value);
+							var content=ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
+							var connectionId =ChatConnectionId;
+					        var parameter = new Object();
+					        parameter.ReceiveConnectionId = connectionId;
+					        parameter.Content = content;
+					        alert(parameter.Content);
+					        hubConnection.invoke('SendMessage', parameter);
+							
 							ui.boxMsgText.value = '';
-							$.trigger(ui.boxMsgText, 'input', null);
+							mui.trigger(ui.boxMsgText, 'input', null);
 						} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {
 							ui.btnMsgType.classList.add('mui-icon-compose');
 							ui.btnMsgType.classList.remove('mui-icon-mic');
@@ -466,9 +472,6 @@
 					
 					
 					
-					
-					
-					let hubConnection;
 			      	//建立链接
 			        let hubUrl = 'http://aehyok.com:5004/chat';
 			        let httpConnection = new signalR.HttpConnection(hubUrl);
@@ -480,7 +483,7 @@
                 //3、握手后的服务端回调Me
 			        hubConnection.on('OnConnectionedMe', data => {
 			            var parameter = new Object();
-			            var userName = "Test";
+			            var userName = "MUI";
 			            parameter.ConnectionId = data;
 			            parameter.UserName = userName;
 			            //4、链接建立后处理信息
@@ -488,30 +491,28 @@
 			        });
         
 			        hubConnection.on('OnConnectionedExcept', data => {
-			            jQuery("#roomlist li").remove();
-			            for (var i = 0; i < data.length; i++) {
-			                AddChatUser(data[i].ConnectionId, data[i].UserName,i);
-			            }
+
+			        });
+			        
+					//接收并显示消息
+			        hubConnection.on('ReceiveMessage', data => {
+			        	alert(data);
+			            var userName = data.UserName;
+			            var content = data.Content;
+			            var time = data.SendTime;
+			            alert(time);
+			            var html='<div>'+content+'</div></br>';
+			            $("#msg-list").append(html);
 			        });
         
 			        function AddChatUser(connectionId,userName,count)
 				    {
-				    	var html='<li class=\"mui-table-view-cell\" id=\"li"+"' + connectionId + '\"  onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'>'+
-				    	'<a href=\"javascript:void(0);\" >' + userName + ''+
-				    	'</a><span class="mui-badge">'+count+'</span></li>';
-			//	        var html = '<li id=\"li"+"' + connectionId + '\"><a href=\"javascript:void(0);\" onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'><img class=\"contact-pic\" src=\"../theme/assets/pages/media/users/avatar7.jpg\">' +
-			//	            '<span class=\"contact-name\">' + userName + '</span>' +
-			//	            '<span class=\"contact-status bg-green\"></span></a></li>';
-				        jQuery("#roomlist").append(html);
+				    	
 				    }
 	    
 	        		//与指定联系人建立显示聊天窗口
 				    function AddRoom(connectionId, userName) {
-				        $("#ChatRoomName").html(userName);
-				        $("#BtnSubmitMessage").attr("data-id", connectionId);
-				        var cont = $('#chats');
-				        var list = $('.chats', cont);
-				        list.find("li").remove();
+
 				    }
 				});
 			}(mui, document));
