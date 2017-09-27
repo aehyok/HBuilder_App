@@ -110,7 +110,13 @@
 			"images/qipa/me/44.png",
 			"images/qipa/me/pb.png",
 			"images/qipa/me/jb.png",
-			"images/02.png"
+			"images/02.png",
+			"images/qipa/me/e1.png",
+			"images/qipa/me/b1.png",
+			"images/qipa/me/f1.png",
+			"images/qipa/me/c1.png",
+			"images/qipa/me/d1.png",
+			"images/qipa/me/a1.png"
 		],
 		"refer": [
 			"index.html"
