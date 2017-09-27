@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/signalr-client.min.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">通讯录</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-chevron" >
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">
+						家人组
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron" id="roomlist">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" href="#">
+								马云
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								马化腾
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-table-view-chevron" id="list">
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">
+						朋友组
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" href="#">
+								马云
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								马化腾
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								刘强东
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								李彦宏
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-table-view-chevron" id="list">
+				<li class="mui-table-view-cell mui-collapse">
+					<a class="mui-navigate-right" href="#">
+						客户组
+					</a>
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" href="#.html">
+								阿里巴巴
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								腾讯
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								京东
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-plus-visible">
+							<a class="mui-navigate-right" href="#">
+								百度
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			
+		</div>
+		<script>
+			//初始化
+		    mui.init({
+	            preloadPages: [{//预加载目标页面
+	                'url': 'ChatNewPage.html',
+	                'id': 'ChatNewPage'
+	            }]
+	        });
+			
+			
+	      	let hubConnection;
+	      	//建立链接
+	        let hubUrl = 'http://aehyok.com:5004/chat';
+	        let httpConnection = new signalR.HttpConnection(hubUrl);
+	        hubConnection = new signalR.HubConnection(httpConnection);
+	
+	        //1、进行握手
+	        hubConnection.start();
+	        
+	        //3、握手后的服务端回调Me
+	        hubConnection.on('OnConnectionedMe', data => {
+	            var parameter = new Object();
+	            var userName = "Test";
+	            parameter.ConnectionId = data;
+	            parameter.UserName = userName;
+	            //4、链接建立后处理信息
+	            hubConnection.invoke('OnConnectionedAfter', parameter);
+	        });
+	        
+	        hubConnection.on('OnConnectionedExcept', data => {
+	            jQuery("#roomlist li").remove();
+	            for (var i = 0; i < data.length; i++) {
+	                AddChatUser(data[i].ConnectionId, data[i].UserName,i);
+	            }
+	        });
+	        
+	        hubConnection.on('OnDisconneted', data => {
+	            
+	        });
+	        
+	        function AddChatUser(connectionId,userName,count)
+		    {
+		    	var html='<li class=\"mui-table-view-cell\" id=\"li"+"' + connectionId + '\"  onclick=\'AddRoom("' + connectionId + '","' + userName + '")\'>'+
+		    	'<a href=\"javascript:void(0);\" >' + userName + ''+
+		    	'</a><span class="mui-badge">'+count+'</span></li>';
+		        $("#roomlist").append(html);
+		    }
+		    
+		        //与指定联系人建立显示聊天窗口
+		    function AddRoom(connectionId, userName) {
+		    	//选择聊天人，开始进入聊天页面
+		    	var Page = plus.webview.getWebviewById('ChatNewPage');
+		    	mui.fire(Page, 'show', {
+	                connectionId: connectionId,     
+	                userName: userName  
+	          	});
+		    	mui.openWindow({
+		  			url:'ChatNewPage.html',
+		  			id:'ChatNewPage'
+		  		});
+		    }
+		</script>
+	</body>
+</html>

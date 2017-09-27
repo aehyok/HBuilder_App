@@ -210,7 +210,8 @@
 					"images/slider/yuantiao.jpg",
 					"images/slider/shuijiao.jpg",
 					"images/slider/cbd.jpg",
-					"images/slider/muwu.jpg"
+					"images/slider/muwu.jpg",
+					"ChatPersonList.html"
 				],
 				"refer": [
 					"ChatPage.html",
@@ -253,9 +254,24 @@
 					"js/arttmpl.js",
 					"js/signalr-client.min.js",
 					"js/jquery-1.10.2.min.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/mui.min.js"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"ChatPersonList.html": {
+				"resources": [
+					"js/mui.min.js",
+					"js/jquery-1.10.2.min.js",
+					"js/signalr-client.min.js",
+					"index.html",
+					"css/mui.min.css",
+					"fonts/mui.ttf"
+				],
+				"refer": [
+					"ChatNewPage.html"
+				],
 				"priority": 0
 			}
 		},
