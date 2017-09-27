@@ -1,9 +1,128 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title></title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
 	</head>
 	<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">博客</h1>
+	</header>
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="#tabbar">
+			<!--<span class="mui-icon mui-icon-home"></span>-->
+			<img src="images/qipa/zy.png" class="mui-icon"/>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item" href="#tabbar-with-english">
+			<!--<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>-->
+			<img src="images/qipa/ppq.png" class="mui-icon"/>
+			<span class="mui-tab-label">啪啪圈</span>
+		</a>
+		<a class="mui-tab-item" href="#tabbar-with-chat">
+			<!--<span class="mui-icon mui-icon-chat"></span>-->
+			<img src="images/qipa/sc.png" class="mui-icon"/>
+			<span class="mui-tab-label">收藏</span>
+		</a>
+		<a class="mui-tab-item" href="#tabbar-with-person">
+			<!--<span class="mui-icon mui-icon-person"></span>-->
+			<img src="images/qipa/wd.png" class="mui-icon"/>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav> 
+	<div class="mui-content">
+			<div id="tabbar" class="mui-control-content mui-active">
+				<div class="title">这是div模式选项卡中的第1个子页面.</div>
+			</div>
+			<div id="tabbar-with-english" class="mui-control-content">
+				<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个消息列表</div>
+			</div>
+			<div id="tabbar-with-chat" class="mui-control-content">
+				<div class="title">这是div模式选项卡中的第3个子页面，该页面展示一个通讯录示例.</div>
+			</div>
+			<div id="tabbar-with-person" class="mui-control-content">
+				<div class="title">这是div模式选项卡中的第4个子页面，该页面展示一个常见的设置示例.</div>
+					<ul class="mui-table-view mui-grid-view mui-grid-12">
+			            <li class="mui-table-view-cell  mui-col-xs-6 mui-col-sm-6">
+		            		<img src="images/qipa/me/pb.png" style="width: 20px;height:20px;" />
+		                    <span class="mui">啪币：901234</span>
+			            </li>
+			            <li class="mui-table-view-cell  mui-col-xs-6 mui-col-sm-6">
+			            	<a class="">
+			            		<img src="images/qipa/me/jb.png" style="width: 20px;height:20px;" />
+			                <span class="mui">余额：991264</span>
+				            </a>
+			            </li>
+					</ul>
+					<ul class="mui-table-view" style="padding: 3px;">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								<span class="mui-badge">查看更多订单</span>
+								我的订单
+							</a>
+						</li>
+					</ul> 
+					<ul class="mui-table-view mui-grid-view mui-grid-12">
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="HomePage.html">
+		                    <img src="images/qipa/me/11.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">待付款</div></a></li>
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="ChatPage.html">
+		                    <img src="images/qipa/me/22.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">待收货</div></a></li>
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="ChatPersonList.html">
+		                    <img src="images/qipa/me/33.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">待评价</div></a></li>
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
+		                    <img src="images/qipa/me/44.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">售后服务</div></a></li>
+					</ul>
+					<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							我参与的
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							我收藏的
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							我的返利
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							我的消息
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							意见反馈
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							设置
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</body>
 </html>

@@ -212,7 +212,13 @@
 					"images/slider/cbd.jpg",
 					"images/slider/muwu.jpg",
 					"ChatPersonList.html",
-					"ChatPage.html"
+					"ChatPage.html",
+					"HomePage.html",
+					"images/slider/11.jpg",
+					"images/slider/22.jpg",
+					"images/slider/44.jpg",
+					"images/slider/33.jpg",
+					"images/slider/55.jpg"
 				],
 				"refer": [
 					"ChatNewPage.html"
@@ -279,6 +285,25 @@
 				"refer": [
 					"ChatNewPage.html"
 				],
+				"priority": 0
+			},
+			"HomePage.html": {
+				"resources": [
+					"css/mui.min.css",
+					"images/01.png",
+					"index.html",
+					"images/qipa/zy.png",
+					"images/qipa/ppq.png",
+					"images/qipa/sc.png",
+					"images/qipa/wd.png",
+					"images/qipa/me/11.png",
+					"images/qipa/me/33.png",
+					"images/qipa/me/22.png",
+					"images/qipa/me/44.png",
+					"images/qipa/me/pb.png",
+					"images/qipa/me/jb.png"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
