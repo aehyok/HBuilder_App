@@ -1,65 +1,69 @@
 {
-	"index.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"Chat.html",
-			"fonts/mui.ttf",
-			"images/01.png",
-			"images/05.png",
-			"images/08.png",
-			"images/04.png",
-			"images/09.png",
-			"images/10.png",
-			"images/03.png",
-			"images/07.png",
-			"images/12.png",
-			"images/06.png",
-			"images/02.png",
-			"images/11.png"
-		],
-		"refer": [
-			"Chat.html",
-			"ChatPage.html",
-			"ChatNewPage.html"
-		]
-	},
-	"Chat.html": {
-		"resources": [
-			"css/mui.min.css",
-			"js/signalr-client.min.js",
-			"js/jquery-1.10.2.min.js",
-			"index.html"
-		],
-		"refer": [
-			"index.html",
-			"ChatNewPage.html"
-		]
-	},
-	"ChatPage.html": {
-		"resources": [
-			"css/mui.imageviewer.css",
-			"/js/mui.imageViewer.js",
-			"/js/mui.min.js",
-			"css/mui.min.css",
-			"/js/arttmpl.js",
-			"js/mui.imageViewer.js",
-			"js/arttmpl.js",
-			"js/mui.min.js"
-		],
-		"refer": []
-	},
-	"ChatNewPage.html": {
-		"resources": [
-			"css/mui.min.css",
-			"css/mui.imageviewer.css",
-			"js/mui.imageViewer.js",
-			"css/app.css",
-			"js/arttmpl.js",
-			"js/signalr-client.min.js",
-			"js/jquery-1.10.2.min.js",
-			"fonts/mui.ttf"
-		],
-		"refer": []
-	}
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "Chat.html",
+      "fonts/mui.ttf",
+      "images/01.png",
+      "images/05.png",
+      "images/08.png",
+      "images/04.png",
+      "images/09.png",
+      "images/10.png",
+      "images/03.png",
+      "images/07.png",
+      "images/12.png",
+      "images/06.png",
+      "images/02.png",
+      "images/11.png",
+      "images/slider/yuantiao.jpg",
+      "images/slider/shuijiao.jpg",
+      "images/slider/cbd.jpg",
+      "images/slider/muwu.jpg"
+    ],
+    "refer": [
+      "Chat.html",
+      "ChatPage.html",
+      "ChatNewPage.html"
+    ]
+  },
+  "Chat.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/signalr-client.min.js",
+      "js/jquery-1.10.2.min.js",
+      "index.html"
+    ],
+    "refer": [
+      "index.html",
+      "ChatNewPage.html"
+    ]
+  },
+  "ChatPage.html": {
+    "resources": [
+      "css/mui.imageviewer.css",
+      "/js/mui.imageViewer.js",
+      "/js/mui.min.js",
+      "css/mui.min.css",
+      "/js/arttmpl.js",
+      "js/mui.imageViewer.js",
+      "js/arttmpl.js",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "ChatNewPage.html": {
+    "resources": [
+      "css/mui.min.css",
+      "css/mui.imageviewer.css",
+      "js/mui.imageViewer.js",
+      "css/app.css",
+      "js/arttmpl.js",
+      "js/signalr-client.min.js",
+      "js/jquery-1.10.2.min.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  }
 }

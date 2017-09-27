@@ -7,18 +7,32 @@
     <script src="js/mui.min.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <style>
+    	html,
+		body {
+				background-color: #efeff4;
+			}
+			.m
     	.mui-col-sm-4{
     		border: #2187E7 solid 0px;
     	}
     </style>
     <script type="text/javascript" charset="utf-8">
       	mui.plusReady(function(){
-		     console.log("当前页面URL："+plus.webview.currentWebview().getURL());
+		    console.log("当前页面URL："+plus.webview.currentWebview().getURL());
+			var slider = mui("#slider");
+	      	slider.slider({
+				interval: 2000
+			});
 		});
 		      	
       	mui.init({
-				statusBarBackground: '#f7f7f7'
-			});
+				statusBarBackground: '#f7f7f7',
+				swipeBack:true //启用右滑关闭功能
+		});
+		
+
+		
+      	
       	
       	function openNewWebView()
       	{
@@ -56,54 +70,83 @@
 		<h1 class="mui-title">aehyok.com</h1>
 	</header>
 	<div class="mui-content">
-		<button onclick="openNewWebView()">Open New Web View</button>
-		<button onclick="openNewChatView()">Open New Chat View</button>
-		<button onclick="openNewChatPageView()">Open New ChatPage View</button>
-		<button onclick="openChatView()">Open New ChatPage View</button>
-		<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/01.png" />
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="images/slider/yuantiao.jpg">
+						<p class="mui-slider-title">静静看这世界</p>
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/slider/shuijiao.jpg">
+						<p class="mui-slider-title">幸福就是可以一起睡觉</p>
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/slider/muwu.jpg">
+						<p class="mui-slider-title">想要一间这样的木屋，静静的喝咖啡</p>
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/slider/cbd.jpg">
+						<p class="mui-slider-title">Color of SIP CBD</p>
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/slider/yuantiao.jpg">
+						<p class="mui-slider-title">静静看这世界</p>
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="images/slider/shuijiao.jpg">
+						<p class="mui-slider-title">幸福就是可以一起睡觉</p>
+					</a>
+				</div>
 			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/02.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/03.png" />
+			<div class="mui-slider-indicator mui-text-right">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
 			</div>
 		</div>
-		<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/04.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/05.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/06.png" />
-			</div>
-		</div>
-		<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/07.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/08.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/09.png" />
-			</div>
-		</div>
-				<div class="mui-row" style="width: 100%;padding-left: 20px;padding-right: 20px;padding-top: 10px;padding-bottom: 10px;">
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/10.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/11.png" />
-			</div>
-			<div class="mui-col-sm-4">
-				<img style="width:100px;height:100px;" src="images/12.png" />
-			</div>
-		</div>
-	</div>
+        <ul class="mui-table-view mui-grid-view mui-grid-9">
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-home"  ></span>
+	                    <div class="mui-media-body">Sandy Home</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
+	                    <div class="mui-media-body">Sandy Email</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-chatbubble"></span>
+	                    <div class="mui-media-body">Sandy Chat</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-location"></span>
+	                    <div class="mui-media-body">location</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-search"></span>
+	                    <div class="mui-media-body">Sandy Search</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-phone"></span>
+	                    <div class="mui-media-body">Sandy Phone</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-gear"></span>
+	                    <div class="mui-media-body">Sandy Setting</div></a></li>
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-info"></span>
+	                    <div class="mui-media-body">Sandy about</div></a></li>
+	           <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	                    <span class="mui-icon mui-icon-more"></span>
+	                    <div class="mui-media-body">more</div></a></li>
+	        </ul> 
+	</div>	
 </body>
 </html>
