@@ -75,7 +75,13 @@
       "js/signalr-client.min.js",
       "index.html",
       "css/mui.min.css",
-      "fonts/mui.ttf"
+      "fonts/mui.ttf",
+      "images/slider/cbd.jpg",
+      "images/slider/muwu.jpg",
+      "images/slider/shuijiao.jpg",
+      "images/person/xlx.png",
+      "images/person/zhb.png",
+      "images/person/xp.png"
     ],
     "refer": [
       "ChatNewPage.html"
