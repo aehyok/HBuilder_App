@@ -16,54 +16,6 @@
     		border: #2187E7 solid 0px;
     	}
     </style>
-    <script type="text/javascript" charset="utf-8">
-      	mui.plusReady(function(){
-		    console.log("当前页面URL："+plus.webview.currentWebview().getURL());
-			var slider = mui("#slider");
-	      	slider.slider({
-				interval: 2000
-			});
-		});
-		      	
-      	mui.init({
-				statusBarBackground: '#f7f7f7',
-				swipeBack:true //启用右滑关闭功能
-		});
-		
-
-		
-      	
-      	
-      	function openNewWebView()
-      	{
-      		var url="http://www.baidu.com";
-      		plus.webview.create(url).show();
-      	}
-      	
-      	function openNewChatView()
-      	{
-      		  mui.openWindow({
-			    url: 'ChatPage.html', 
-			    id:'chat'
-		  });
-      	}
-      	
-      	function openNewChatPageView()
-      	{
-      		mui.openWindow({
-      			url:'ChatNewPage.html',
-      			id:'ChatNewPage'
-      		});
-      	}
-      	
-      	function openChatView()
-      	{
-      		mui.openWindow({
-      			url:'Chat.html',
-      			id:'Chat'
-      		});
-      	}
-    </script>
 </head>
 <body>
 	<header class="mui-bar mui-bar-nav">
@@ -125,7 +77,7 @@
 	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 	                    <span class="mui-icon mui-icon-email"><span class="mui-badge">5</span></span>
 	                    <div class="mui-media-body">Sandy Email</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="Chat.html">
 	                    <span class="mui-icon mui-icon-chatbubble"></span>
 	                    <div class="mui-media-body">Sandy Chat</div></a></li>
 	            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
@@ -148,5 +100,72 @@
 	                    <div class="mui-media-body">more</div></a></li>
 	        </ul> 
 	</div>	
+
+	<script type="text/javascript" charset="utf-8">
+      	(function(mui, doc) {
+      		mui.init({
+				statusBarBackground: '#f7f7f7',
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+			mui.plusReady(function(){
+			    console.log("当前页面URL："+plus.webview.currentWebview().getURL());
+				var slider = mui("#slider");
+		      	slider.slider({
+					interval: 2000
+				});
+				
+				var ui = {
+						tableCell: doc.querySelector('.mui-table-view-cell'),
+					};
+				ui.tableCell.addEventListener('tap', function(event) {
+					if (ui.tableCell.classList.contains('mui-icon-paperplane')) {
+						
+						event.preventDefault();
+					}
+				});
+			});
+      	}(mui, document));
+      	
+      	
+      	
+		      	
+      	
+		
+
+		
+      	
+      	
+      	function openNewWebView()
+      	{
+      		var url="http://www.baidu.com";
+      		plus.webview.create(url).show();
+      	}
+      	
+      	function openNewChatView()
+      	{
+      		  mui.openWindow({
+			    url: 'ChatPage.html', 
+			    id:'chat'
+		  });
+      	}
+      	
+      	function openNewChatPageView()
+      	{
+      		mui.openWindow({
+      			url:'ChatNewPage.html',
+      			id:'ChatNewPage'
+      		});
+      	}
+      	
+      	function openChatView()
+      	{
+      		mui.openWindow({
+      			url:'Chat.html',
+      			id:'Chat'
+      		});
+      	}
+      	
+   </script>
 </body>
 </html>
