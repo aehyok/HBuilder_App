@@ -332,12 +332,6 @@
 			var ChatUserName=null;
 			let hubConnection;
 			
-			window.addEventListener('show', function(event) {
-                //获得事件参数
-                ChatConnectionId = event.detail.connectionId;
-                ChatUserName = event.detail.userName;
-                document.querySelector('.mui-title').innerHTML=ChatUserName;
-        	});
 			
 			(function(mui, doc) {
 				mui.init({
@@ -378,9 +372,18 @@
 					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
 					//alert(ui.boxMsgText.offsetWidth );
 					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
-								
+					
+					window.addEventListener('show', function(event) {
+		                //获得事件参数
+		                ChatConnectionId = event.detail.connectionId;
+		                ChatUserName = event.detail.userName;
+		                document.querySelector('.mui-title').innerHTML=ChatUserName;
+		        	});	
+						
 					window.addEventListener('resize', function() {
 						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+						console.log(ui.areaMsgList.scrollHeight+'scrollHeight');
+						console.log(ui.areaMsgList.offsetHeight+'offsetHeight');
 					}, false);
 					
 					function msgTextFocus() {
@@ -418,9 +421,9 @@
 					        parameter.ReceiveConnectionId = connectionId;
 					        parameter.Content = content;
 					        hubConnection.invoke('SendMessage', parameter);
-							
 							ui.boxMsgText.value = '';
 							mui.trigger(ui.boxMsgText, 'input', null);
+							
 						} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {
 							ui.btnMsgType.classList.add('mui-icon-compose');
 							ui.btnMsgType.classList.remove('mui-icon-mic');
@@ -492,6 +495,10 @@
 
 			        });
 			        
+	                 function Trim(str){ 
+				        return str.replace(/(^\s*)|(\s*$)/g, ""); 
+				     }
+			        
 					//接收并显示消息
 			        hubConnection.on('ReceiveMessage', data => {
 			            var userName = data.UserName;
@@ -499,9 +506,18 @@
 			            var time = data.SendTime;
 			            var html='<div>'+content+'</div></br>';
 			            
+			            var toUserName=$(".mui-title").innerHTML;
+			            var first=null;
+			            if(Trim(userName)!=Trim(ChatUserName))
+			            {
+			            	first='<div class=\"msg-item msg-item-self\" msg-type=\'\' msg-content=\'\'>';
+			            }
+			            else
+			            {
+			            	first='<div class=\"msg-item\" msg-type=\'\' msg-content=\'\'>';
+			            }
 			            
-			            
-			            html='<div class=\"msg-item msg-item-self\" msg-type=\'\' msg-content=\'\'>'
+			            html=first
 			            	+'<i class=\"msg-user mui-icon mui-icon-person\"></i>'
 			            	+'<div class=\"msg-content\">'
 			            	+'<div class=\"msg-content-inner\">'+content+'</div>'
@@ -510,6 +526,7 @@
 			            	+'<div class=\"mui-item-clear\"></div>'
 			            	+'</div>';
 			            $("#msg-list").append(html);
+			            ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
 			        });
         
 			        function AddChatUser(connectionId,userName,count)

@@ -211,10 +211,10 @@
 					"images/slider/shuijiao.jpg",
 					"images/slider/cbd.jpg",
 					"images/slider/muwu.jpg",
-					"ChatPersonList.html"
+					"ChatPersonList.html",
+					"ChatPage.html"
 				],
 				"refer": [
-					"ChatPage.html",
 					"ChatNewPage.html"
 				],
 				"priority": 0
@@ -240,7 +240,8 @@
 					"/js/arttmpl.js",
 					"js/mui.imageViewer.js",
 					"js/arttmpl.js",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"index.html"
 				],
 				"refer": [],
 				"priority": 0

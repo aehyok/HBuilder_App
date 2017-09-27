@@ -50,7 +50,8 @@
       "/js/arttmpl.js",
       "js/mui.imageViewer.js",
       "js/arttmpl.js",
-      "js/mui.min.js"
+      "js/mui.min.js",
+      "index.html"
     ],
     "refer": []
   },

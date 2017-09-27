@@ -449,6 +449,7 @@
 					bindMsgList();
 					window.addEventListener('resize', function() {
 						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+						console.log(ui.areaMsgList.scrollTop+'----'+Date.now());
 					}, false);
 					var send = function(msg) {
 						record.push(msg);
