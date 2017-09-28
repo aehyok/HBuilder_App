@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
-    <script src="js/mui.min.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
 	</head>
 	<body>
@@ -45,7 +44,7 @@
 				<div class="title">这是div模式选项卡中的第3个子页面，该页面展示一个通讯录示例.</div>
 			</div>
 			<div id="tabbar-with-person" class="mui-control-content">
-					<div style="width: 100%;height:150px;background-color: #fee950;">
+					<div style="width: 100%;height:200px;background-color: #fee950;">
 						<div class="mui-row" style="margin:0 auto;width: 100%;">
 							<div class="mui-col-sm-4"></div>
 							<div class="mui-col-sm-4"><img src="images/02.png" /></div>
@@ -89,6 +88,7 @@
 					<ul class="mui-table-view" style="padding: 3px;">
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
+							<img src="images/qipa/me/a1.png" style="width: 20px;height:20px;padding-top:3px;" />
 							我参与的
 						</a>
 					</li>
@@ -96,6 +96,7 @@
 				<ul class="mui-table-view" style="padding: 3px;">
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
+							<img src="images/qipa/me/b1.png" style="width: 20px;height:20px;padding-top:3px;" />
 							我收藏的
 						</a>
 					</li>
@@ -103,6 +104,7 @@
 				<ul class="mui-table-view" style="padding: 3px;">
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
+							<img src="images/qipa/me/c1.png" style="width: 20px;height:20px;padding-top:3px;" />
 							我的返利
 						</a>
 					</li>
@@ -110,6 +112,7 @@
 				<ul class="mui-table-view" style="padding: 3px;">
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
+							<img src="images/qipa/me/d1.png" style="width: 20px;height:20px;padding-top:3px;" />
 							我的消息
 						</a>
 					</li>
@@ -117,6 +120,7 @@
 				<ul class="mui-table-view" style="padding: 3px;">
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
+							<img src="images/qipa/me/e1.png" style="width: 20px;height:20px;padding-top:3px;" />
 							意见反馈
 						</a>
 					</li>
@@ -124,11 +128,52 @@
 				<ul class="mui-table-view" style="padding: 3px;">
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
+							<img src="images/qipa/me/f1.png" style="width: 20px;height:20px;padding-top:3px;" />
 							设置
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			(function(mui, doc) {
+				mui.init({
+					gestureConfig: {
+						tap: true, //默认为true
+						doubletap: true, //默认为false
+						longtap: true, //默认为false
+						swipe: true, //默认为true
+						drag: true, //默认为true
+						hold: true, //默认为false，不监听
+						release: true //默认为false，不监听
+					}
+				});
+				
+				mui.plusReady(function() {
+					plus.webview.currentWebview().setStyle({
+						softinputMode: "adjustResize"
+					});
+                    console.log(111);
+                    mui.ajax({
+					    url: 'http://aehyok.com:1281/api/Blog/Article/1',
+					    data: {ce:'ce'},
+					    async: true, // 异步 || 同步
+					    dataType: 'json',
+					    type: 'get',
+					    timeout: 10000,
+					    success: function(data) {
+					        console.log(data);
+					    },
+					    error: function(xhr, type, errorThrown) {
+					        // 请求失败
+					    }
+					});
+					mui.getJSON("http://aehyok.com:1281/api/Blog/Article/1", {}, function(rsp) {
+						console.log(rsp);
+					});	
+				});
+			}(mui, document));
+		</script>
 	</body>
 </html>

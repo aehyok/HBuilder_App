@@ -1,0 +1,13 @@
+	/*合并边框*/
+	table{
+		border-collapse: collapse;  
+		}
+	table tr td{
+		width: 7em;
+		border: 1px solid red;
+		text-align: center;
+	}
+	#td1Class{
+		border-bottom-color: yellow;
+	}
+
