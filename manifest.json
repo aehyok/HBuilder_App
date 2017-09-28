@@ -312,7 +312,9 @@
 					"js/vue.min.js",
 					"images/person/xlx.png",
 					"images/person/xp.png",
-					"images/person/zhb.png"
+					"images/person/zhb.png",
+					"images/blog/bloghead.jpg",
+					"images/qipa/mjdj.png"
 				],
 				"refer": [
 					"BlogDetailPage.html"

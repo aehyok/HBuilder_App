@@ -18,7 +18,7 @@
 			
 			.meta-info {
 				position: absolute;
-				left: 115px;
+				left: 100px;
 				right: 15px;
 				bottom: 8px;
 				color: #8f8f94;
@@ -26,6 +26,10 @@
 			
 			.meta-info .author,.meta-info .time{
 				display: inline-block;
+			}
+			
+			.meta-info.author{
+				float:left;
 			}
 			
 			.meta-info .time{
@@ -74,22 +78,18 @@
 	</header>
 	<nav class="mui-bar mui-bar-tab">
 		<a class="mui-tab-item mui-active" href="#tabbar">
-			<!--<span class="mui-icon mui-icon-home"></span>-->
 			<img src="images/qipa/zy.png" class="mui-icon"/>
 			<span class="mui-tab-label">首页</span>
 		</a>
 		<a class="mui-tab-item" href="#tabbar-with-english">
-			<!--<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>-->
-			<img src="images/qipa/ppq.png" class="mui-icon"/>
-			<span class="mui-tab-label">啪啪圈</span>
+			<img src="images/qipa/mjdj.png" class="mui-icon"/>
+			<span class="mui-tab-label">买家定价</span>
 		</a>
 		<a class="mui-tab-item" href="#tabbar-with-chat">
-			<!--<span class="mui-icon mui-icon-chat"></span>-->
 			<img src="images/qipa/sc.png" class="mui-icon"/>
-			<span class="mui-tab-label">收藏</span>
+			<span class="mui-tab-label">啪啪圈</span>
 		</a>
 		<a class="mui-tab-item" href="#tabbar-with-person">
-			<!--<span class="mui-icon mui-icon-person"></span>-->
 			<img src="images/qipa/wd.png" class="mui-icon"/>
 			<span class="mui-tab-label">我的</span>
 		</a>
@@ -100,12 +100,13 @@
 				<ul id="list" class="mui-table-view">
 					<li class="mui-table-view-cell mui-media" v-for="item in items">
 						<a href="javascript:;" :data-guid="item.Id" @tap="open_detail(item)" >
-							<img class="mui-media-object mui-pull-left" :src="item.cover">
-							<div class="mui-media-body">
+							<!--<img class="mui-media-object mui-pull-left" :src="item.cover">-->
+							<img class="mui-media-object mui-pull-left" style="width: 75px;" src="images/blog/bloghead.jpg">
+							<div class="mui-media-body"> 
 								<div class="mui-ellipsis-2">{{item.Title}}</div>
 							</div>
 							<div class="meta-info">
-								<div class="author">aehyok</div>
+								<div class="author">糖果果儿</div>
 								<div class="time">{{item.UpdateTime}}</div>
 							</div>
 						</a>
@@ -227,8 +228,7 @@
 					color: '#cccccc'
 				}
 			};
-			
-			
+
 			(function(mui, doc) {
 				mui.init({
 					pullRefresh: {
