@@ -295,6 +295,19 @@
 				}
 			});	
 			
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+			    var targetTab = this.getAttribute('href');
+			    if (targetTab == activeTab) {
+			            return;
+			    }
+			    //显示目标选项卡
+			    plus.webview.show(targetTab);
+			    //隐藏当前;
+			    plus.webview.hide(activeTab);
+			    //更改当前活跃的选项卡
+			    activeTab = targetTab;
+			});
+						
 			function open_detail(item) {
 				console.log(item.Id);
 				

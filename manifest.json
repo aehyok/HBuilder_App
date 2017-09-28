@@ -218,7 +218,8 @@
 					"images/slider/22.jpg",
 					"images/slider/44.jpg",
 					"images/slider/33.jpg",
-					"images/slider/55.jpg"
+					"images/slider/55.jpg",
+					"TabChangePage.html"
 				],
 				"refer": [
 					"ChatNewPage.html"
@@ -314,7 +315,8 @@
 					"images/person/xp.png",
 					"images/person/zhb.png",
 					"images/blog/bloghead.jpg",
-					"images/qipa/mjdj.png"
+					"images/qipa/mjdj.png",
+					"js/mui.min.js"
 				],
 				"refer": [
 					"BlogDetailPage.html"
@@ -328,6 +330,51 @@
 					"css/list-to-detail.css",
 					"js/vue.min.js",
 					"images/slider/44.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"TabChangePage.html": {
+				"resources": [
+					"css/mui.min.css",
+					"images/qipa/sc.png",
+					"images/qipa/zy.png",
+					"images/qipa/mjdj.png",
+					"images/qipa/wd.png",
+					"index.html",
+					"Tab1.html"
+				],
+				"refer": [
+					"Tab3.html",
+					"Tab2.html",
+					"Tab4.html"
+				],
+				"priority": 0
+			},
+			"Tab1.html": {
+				"resources": [
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"Tab3.html": {
+				"resources": [
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"Tab2.html": {
+				"resources": [
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"Tab4.html": {
+				"resources": [
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0
