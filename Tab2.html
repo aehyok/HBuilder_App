@@ -5,12 +5,363 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="css/mui.min.css" rel="stylesheet"/>
+	<style type="text/css">
+			.mui-media {
+				font-size: 14px;
+			}
+			
+			.mui-table-view .mui-media-object {
+				max-width: initial;
+				width: 80px;
+				height: 65px;
+			}
+			
+			.meta-info {
+				position: absolute;
+				left: 100px;
+				right: 15px;
+				bottom: 8px;
+				color: #8f8f94;
+			}
+			
+			.meta-info .author,.meta-info .time{
+				display: inline-block;
+			}
+			
+			.meta-info.author{
+				float:left;
+			}
+			
+			.meta-info .time{
+				float: right;
+			}
+			
+			.mui-table-view:before,
+			.mui-table-view:after {
+				height: 0;
+			}
+			
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 1px;
+			}
+			
+			.banner {
+				height: 180px;
+				overflow: hidden;
+				position: relative;
+				background-position: center;
+				background-color: #ccc;
+			}
+			
+			.banner img {
+				width: 100%;
+				height: auto;
+			}
+			
+			.banner .title {
+				position: absolute;
+				left: 15px;
+				bottom: 15px;
+				width: 90%;
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 21px;
+				color: white;
+				z-index: 11;
+			}
+		</style>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">2222222</h1>
-		</header>
-		<div class="mui-content">2222222222222222</div>
+	<header class="mui-bar mui-bar-nav">
+		
+		<h1 class="mui-title">摆龙门阵</h1>
+	</header>
+	<div class="mui-content">
+			<div id="tabbar" class="mui-control-content mui-active">
+				<!--列表信息流 开始-->
+				<ul id="list" class="mui-table-view">
+					<li class="mui-table-view-cell mui-media" v-for="item in items">
+						<a href="javascript:;" :data-guid="item.Id" @tap="open_detail(item)" >
+							<!--<img class="mui-media-object mui-pull-left" :src="item.cover">-->
+							<img class="mui-media-object mui-pull-left" style="width: 75px;" src="images/blog/bloghead.jpg">
+							<div class="mui-media-body"> 
+								<div class="mui-ellipsis-2">{{item.Title}}</div>
+							</div>
+							<div class="meta-info">
+								<div class="author">糖果果儿</div>
+								<div class="time">{{item.UpdateTime}}</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!--列表信息流 结束-->
+			</div>
+			<div id="tabbar-with-english" class="mui-control-content">
+				<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个消息列表</div>
+			</div>
+			<div id="tabbar-with-chat" class="mui-control-content">
+				<div class="title">这是div模式选项卡中的第3个子页面，该页面展示一个通讯录示例.</div>
+			</div>
+			<div id="tabbar-with-person" class="mui-control-content">
+					<div style="width: 100%;height:200px;background-color: #fee950;">
+						<div class="mui-row" style="margin:0 auto;width: 100%;">
+							<div class="mui-col-sm-4"></div>
+							<div class="mui-col-sm-4"><img src="images/02.png" /></div>
+							<div class="mui-col-sm-4"></div>
+						</div> 
+					</div> 
+					<ul class="mui-table-view mui-grid-view mui-grid-12">
+			            <li class="mui-table-view-cell  mui-col-xs-6 mui-col-sm-6">
+		            		<img src="images/qipa/me/pb.png" style="width: 20px;height:20px;" />
+		                    <span style="padding-bottom:8px;" class="mui">啪币：901234</span>
+			            </li>
+			            <li class="mui-table-view-cell  mui-col-xs-6 mui-col-sm-6">
+			            	<a class="">
+			            		<img src="images/qipa/me/jb.png" style="width: 20px;height:20px;" />
+			                <span style="padding-bottom:8px;" class="mui">余额：991264</span>
+				            </a>
+			            </li>
+					</ul>
+					<ul class="mui-table-view" style="padding: 3px;">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">
+								<span class="mui-badge">查看更多订单</span>
+								我的订单
+							</a>
+						</li>
+					</ul> 
+					<ul class="mui-table-view mui-grid-view mui-grid-12">
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="HomePage.html">
+		                    <img src="images/qipa/me/11.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">待付款</div></a></li>
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="ChatPage.html">
+		                    <img src="images/qipa/me/22.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">待收货</div></a></li>
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="ChatPersonList.html">
+		                    <img src="images/qipa/me/33.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">待评价</div></a></li>
+			            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
+		                    <img src="images/qipa/me/44.png" class="mui-icon" style="width: 30px;height:30px;" />
+		                    <div class="mui-media-body">售后服务</div></a></li>
+					</ul>
+					<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="images/qipa/me/a1.png" style="width: 20px;height:20px;padding-top:3px;" />
+							我参与的
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="images/qipa/me/b1.png" style="width: 20px;height:20px;padding-top:3px;" />
+							我收藏的
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="images/qipa/me/c1.png" style="width: 20px;height:20px;padding-top:3px;" />
+							我的返利
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="images/qipa/me/d1.png" style="width: 20px;height:20px;padding-top:3px;" />
+							我的消息
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="images/qipa/me/e1.png" style="width: 20px;height:20px;padding-top:3px;" />
+							意见反馈
+						</a>
+					</li>
+				</ul>
+				<ul class="mui-table-view" style="padding: 3px;">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<img src="images/qipa/me/f1.png" style="width: 20px;height:20px;padding-top:3px;" />
+							设置
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script>
+			var webview_detail=null;   //博客详情页面
+			var currentCount=0;
+			
+			var titleNView = { //详情页原生导航配置
+				backgroundColor: '#f7f7f7', //导航栏背景色
+				titleText: '', //导航栏标题
+				titleColor: '#000000', //文字颜色
+				type: 'transparent', //透明渐变样式
+				autoBackButton: true, //自动绘制返回箭头
+				splitLine: { //底部分割线
+					color: '#cccccc'
+				}
+			};
+
+			(function(mui, doc) {
+				mui.init({
+					pullRefresh: {
+						container: '#list',
+						up: {
+							height:80,
+							style: 'circle',
+							offset: '0px',
+							auto: false,
+							callback: UpClick
+						},
+						down: {
+						      style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+						      color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+						      height:'150px',//可选,默认50px.下拉刷新控件的高度,
+						      range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+						      offset:'50px', //可选 默认0px,下拉刷新控件的起始位置
+						      auto: true,//可选,默认false.首次加载自动上拉刷新一次
+							callback: function()
+							{
+								if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+									plus.nativeUI.toast('似乎已断开与互联网的连接', {
+										verticalAlign: 'top'
+									});
+									return;
+								}
+								currentCount=currentCount+1;
+								console.log('当前页数'+currentCount);
+								//请求列表信息流
+								mui.getJSON("http://www.aehyok.com:1281/api/Blog/Article/"+currentCount, null,function(data) {
+									if(data && data.Count > 0) {
+										blogs.items =data.ArticleList.concat(blogs.items);
+										mui('#list').pullRefresh().endPulldown(true);
+									}
+								}); 
+							}
+						},
+					}
+				});
+				
+				mui.plusReady(function() {
+					plus.webview.currentWebview().setStyle({
+						softinputMode: "adjustResize"
+					});
+					webview_detail = mui.preload({
+						url: 'BlogDetailPage.html',
+						id: 'BlogDetailPage',
+						styles: {
+							"render": "always",
+							"popGesture": "hide",
+							"bounce": "vertical",
+							"bounceBackground": "#efeff4",
+							"titleNView": "titleNView"
+						}
+					});
+				});
+			}(mui, document));
+			
+			var blogs = new Vue({
+				el: '#list',
+				data: {
+					banner: {}, //顶部banner数据
+					items: [] //列表信息流数据
+				}
+			});	
+			
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+			    var targetTab = this.getAttribute('href');
+			    if (targetTab == activeTab) {
+			            return;
+			    }
+			    //显示目标选项卡
+			    plus.webview.show(targetTab);
+			    //隐藏当前;
+			    plus.webview.hide(activeTab);
+			    //更改当前活跃的选项卡
+			    activeTab = targetTab;
+			});
+						
+			function open_detail(item) {
+				console.log(item.Id);
+				
+				//触发子窗口变更新闻详情
+				mui.fire(webview_detail, 'get_detail', {
+					guid: item.Id,
+					title:item.Title,
+					content:item.Content,
+					author:"aehyok",
+					time:item.PostTime
+				});
+				
+//					//更改详情页原生导航条信息
+				titleNView.titleText = item.Title;
+				webview_detail.setStyle({
+					"titleNView": titleNView
+				});
+				setTimeout(function () {
+					webview_detail.show("slide-in-right", 300);
+				},150);
+			}
+			
+			
+			function UpClick()
+			{
+				if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+						plus.nativeUI.toast('似乎已断开与互联网的连接', {
+							verticalAlign: 'top'
+						});
+						return;
+				}
+				currentCount=currentCount+1;
+
+				//请求列表信息流
+				mui.getJSON("http://www.aehyok.com:1281/api/Blog/Article/"+currentCount, null,function(data) {
+					console.log('进入请求')
+					console.log(data+"   1");
+					console.log(data.Count);
+					if(data && data.Count > 0) {
+						console.log('进入请求11')
+						//lastId = rsp[0].id; //保存最新消息的id，方便下拉刷新时使用
+						blogs.items =data.ArticleList.concat(blogs.items);
+						console.log(blogs.items);
+						mui('#list').pullRefresh().endPullupToRefresh(true);
+					}
+				});
+			}
+			
+			function DownClick()
+			{
+				if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+						plus.nativeUI.toast('似乎已断开与互联网的连接', {
+							verticalAlign: 'top'
+						});
+						return;
+				}
+				currentCount=currentCount+1;
+
+				//请求列表信息流
+				mui.getJSON("http://www.aehyok.com:1281/api/Blog/Article/"+currentCount, null,function(data) {
+					console.log('进入请求')
+					console.log(data+"   1");
+					console.log(data.Count);
+					if(data && data.Count > 0) {
+						console.log('进入请求11')
+						//lastId = rsp[0].id; //保存最新消息的id，方便下拉刷新时使用
+						blogs.items =data.ArticleList.concat(blogs.items);
+						console.log(blogs.items);
+						mui('#list').pullRefresh().endPullupToRefresh();
+					}
+				}); 
+			}
+		</script>
 	</body>
 </html>
